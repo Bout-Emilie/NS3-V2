@@ -2349,8 +2349,10 @@ WifiPhy::CalculateTxDuration (uint32_t size, WifiTxVector txVector, uint16_t fre
 void
 WifiPhy::NotifyTxBegin (Ptr<const Packet> packet, double txPowerW)
 {
+  NS_LOG_FUNCTION ("test1-begin");
   if (IsAmpdu (packet))
     {
+      NS_LOG_FUNCTION ("test2-begin");
       std::list<Ptr<const Packet>> mpdus = MpduAggregator::PeekMpdus (packet);
       for (auto & mpdu : mpdus)
         {
@@ -2359,6 +2361,7 @@ WifiPhy::NotifyTxBegin (Ptr<const Packet> packet, double txPowerW)
     }
   else
     {
+      NS_LOG_FUNCTION ("test3-begin");
       m_phyTxBeginTrace (packet, txPowerW);
     }
 }
